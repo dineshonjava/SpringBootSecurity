@@ -1,3 +1,4 @@
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,12 +23,12 @@
     </tr>
     </thead>
     <tbody>
-    <#list users as user>
+    <c:forEach items="${users}" var="user">
     <tr>
         <td><a href="/user/${user.userid}">${user.email}</a></td>
         <td>${user.role}</td>
     </tr>
-    </#list>
+    </c:forEach>
     </tbody>
 </table>
 </body>

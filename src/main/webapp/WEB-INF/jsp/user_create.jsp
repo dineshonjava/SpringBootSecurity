@@ -1,4 +1,4 @@
-<#import "/spring.ftl" as spring>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +18,7 @@
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 	<div>
         <label for="username">Name</label>
-        <input type="username" name="username" id="username" value="${form.username}" required autofocus/>
+        <input type="text" name="username" id="username" value="${form.username}" required autofocus/>
     </div>
     <div>
         <label for="email">Email address</label>
@@ -35,20 +35,19 @@
     <div>
         <label for="role">Role</label>
         <select name="role" id="role" required>
-            <option <#if form.role == 'USER'>selected</#if>>USER</option>
-            <option <#if form.role == 'ADMIN'>selected</#if>>ADMIN</option>
+            <option <c:if test="${form.role == 'USER'}">selected</c:if>>USER</option>
+            <option <c:if test="${form.role == 'ADMIN'}">selected</c:if>>ADMIN</option>
         </select>
     </div>
     <button type="submit">Save</button>
 </form>
 
-<@spring.bind "form" />
-<#if spring.status.error>
+<c:if test="${spring.status.error}">
 <ul>
-    <#list spring.status.errorMessages as error>
+    <c:forEach items="${spring.status.errorMessages}" var="error">
         <li>${error}</li>
-    </#list>
+    </c:forEach>
 </ul>
-</#if>
+</c:if>
 </body>
 </html>

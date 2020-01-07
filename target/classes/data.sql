@@ -1,2 +1,1 @@
-INSERT INTO user (username, email, password, role)
-VALUES ('dinesh', 'admin@doj.com', '$2a$10$ebyC4Z5WtCXXc.HGDc1Yoe6CLFzcntFmfse6/pTj7CeDY5I05w16C', 'ADMIN');
+INSERT INTO user (username, email, password, role) VALUES ('dinesh', 'admin@doj.com', '$2y$12$P0X49xgIeOmmDHdK/j4zCu05k8C0nQrzzE9QOFMy5psQBfdlrL60O', 'ADMIN');

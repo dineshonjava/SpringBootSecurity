@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -7,10 +7,11 @@
 <body>
 <nav role="navigation">
     <ul>
-    <#if !currentUser??>
+    <c:if test="${empty currentUser}">
         <li><a href="/login">Log in</a></li>
-    </#if>
-    <#if currentUser??>
+    </c:if>
+    
+     <c:if test="${not empty currentUser}">
         <li>
             <form action="/logout" method="post">
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
@@ -18,11 +19,11 @@
             </form>
         </li>
         <li><a href="/user/${currentUser.id}">View myself</a></li>
-    </#if>
-    <#if currentUser?? && currentUser.role == "ADMIN">
+   </c:if>
+   <c:if test="${not empty currentUser and currentUser.role == 'ADMIN'}">
         <li><a href="/user/create">Create a new user</a></li>
         <li><a href="/users">View all users</a></li>
-    </#if>
+    </c:if>
     </ul>
 </nav>
 </body>
